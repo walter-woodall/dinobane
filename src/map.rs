@@ -52,7 +52,7 @@ impl Map {
                                 y - camera.top_y,
                                 WHITE,
                                 BLACK,
-                                to_cp437('"'),
+                                to_cp437('#'),
                             );
                         }
                         TileType::Floor => {
