@@ -1,5 +1,5 @@
 use crate::prelude::*;
-const NUM_ROOMS: usize = 20;
+const NUM_ROOMS: usize = 40;
 
 pub struct MapBuilder {
     pub map: Map,
@@ -9,7 +9,7 @@ pub struct MapBuilder {
 
 impl MapBuilder {
     pub fn new(rng: &mut RandomNumberGenerator) -> Self {
-        let mut mb = MapBuilder {
+        let mut mb = Self {
             map: Map::new(),
             rooms: Vec::new(),
             player_start: Point::zero(),
@@ -20,7 +20,7 @@ impl MapBuilder {
         mb.player_start = Point::new(mb.rooms[0].x1 - 1, mb.rooms[0].y1 - 1);
         mb
     }
-    
+
     pub fn fill(&mut self, tile: TileType) {
         self.map.tiles.iter_mut().for_each(|t| *t = tile);
     }
@@ -30,8 +30,8 @@ impl MapBuilder {
             let room = Rect::with_size(
                 rng.range(1, SCREEN_WIDTH - 10),
                 rng.range(1, SCREEN_HEIGHT - 10),
-                rng.range(2, 10),
-                rng.range(2, 10),
+                rng.range(2, 20),
+                rng.range(2, 20),
             );
 
             let mut overlap = false;
