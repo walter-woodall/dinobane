@@ -77,9 +77,15 @@ impl GameState for State {
 
         let current_state = self.resources.get::<TurnState>().unwrap().clone();
         match current_state {
-            TurnState::AwaitingInput => self.input_system.execute(&mut self.ecs, &mut self.resources),
-            TurnState::PlayerTurn => self.player_system.execute(&mut self.ecs, &mut self.resources),
-            TurnState::MonsterTurn => self.monster_system.execute(&mut self.ecs, &mut self.resources),
+            TurnState::AwaitingInput => self
+                .input_system
+                .execute(&mut self.ecs, &mut self.resources),
+            TurnState::PlayerTurn => self
+                .player_system
+                .execute(&mut self.ecs, &mut self.resources),
+            TurnState::MonsterTurn => self
+                .monster_system
+                .execute(&mut self.ecs, &mut self.resources),
         }
 
         render_draw_buffer(ctx).expect("Rendering Error!");
